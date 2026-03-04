@@ -78,14 +78,14 @@ async function processAccount(
   const { list } = await client.collections.player.getBinding()
   // Build character list with game information preserved
   const characterList = list
-    .filter(i => ATTENDANCE_AVAILABLE_APPCODE.includes(i.app代码))
+    .filter(i => ATTENDANCE_AVAILABLE_APPCODE.includes(i.appCode))
     .flatMap(i => i.bindingList)
 
   let accountHasError = false
   for (const character of characterList) {
     // Initialize game stats if not exists
     if (!stats.charactersByGame.has(character.gameId)) {
-      stats。charactersByGame.set(character.gameId, {
+      stats.charactersByGame.set(character.gameId, {
         gameName: character.gameName,
         total: 0,
         succeeded: 0,
@@ -99,8 +99,8 @@ async function processAccount(
 
     const result = await attendCharacter(
       client,
-      character，
-      maxRetries，
+      character,
+      maxRetries,
       character.gameName,
       retriesLeft => messageCollector.log(`操作失败，剩余重试次数: ${retriesLeft}`),
     )
@@ -136,7 +136,7 @@ async function processAccount(
   return { accountHasError, charactersCount: characterList.length }
 }
 
-export 默认 defineTask<'success' | 'failed'>({
+export default defineTask<'success' | 'failed'>({
   meta: {
     name: 'attendance',
     description: '每日签到',
