@@ -49,7 +49,7 @@ const attendanceContext = createContext<AttendanceContext>({
 // Export composable function for accessing context
 const useAttendanceContext = attendanceContext.use
 
-const ATTENDANCE_AVAILABLE_APPCODE = ['endfield']
+const ATTENDANCE_AVAILABLE_APPCODE = ['arknights', 'endfield']
 
 async function processAccount(
   token: string,
